@@ -57,9 +57,9 @@ public interface XmlSaver
      * It can use the DefaultXmlSaver to solve this task. The class has a lot of
      * important and helpful methods to create a xml file.
      *
-     * @param xmlEventWriter this instance is used to create the xml file. It has to be fed with content
+     * @param eventWriter this instance is used to create the xml file. It has to be fed with content
      *
      * @throws XMLStreamException
      */
-    public void save(XMLEventWriter xmlEventWriter, XMLEventFactory eventFactory) throws XMLStreamException;
+    public void save(XMLEventWriter eventWriter, XMLEventFactory eventFactory) throws XMLStreamException;
 }
