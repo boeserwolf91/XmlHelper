@@ -2,8 +2,6 @@ package de.boeserwolf91.xml;
 
 import junit.framework.TestCase;
 
-import java.io.File;
-
 import de.boeserwolf91.xml.utils.FileUtils;
 
 public class Test extends TestCase
@@ -32,8 +30,5 @@ public class Test extends TestCase
         System.out.println("-------------------");
 
         xmlParser.parse(this.testXML.getPath(), false);
-
-        File file = new File(this.testXML.getPath());
-        file.delete();
     }
 }
