@@ -30,7 +30,7 @@ public class TestXML implements XmlSaver, XmlParser
     {
         System.out.println("rootnode: " + node.getNodeName());
         NodeList nodeList = node.getChildNodes();
-        for(int i = 0; i < nodeList.getLength(); i++)
+        for (int i = 0; i < nodeList.getLength(); i++)
         {
             node = nodeList.item(i);
             System.out.println("node: " + node.getNodeName());
