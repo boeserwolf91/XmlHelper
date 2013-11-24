@@ -2,10 +2,12 @@ package de.boeserwolf91.xml;
 
 import java.util.logging.Logger;
 
+import de.boeserwolf91.xml.exception.XmlParseException;
 import de.boeserwolf91.xml.matcher.MatcherManager;
 import de.boeserwolf91.xml.parser.BaseXmlParser;
 import de.boeserwolf91.xml.parser.DefaultXmlParser;
-import de.boeserwolf91.xml.parser.XmlDirectoryManager;
+import de.boeserwolf91.xml.parser.DirectoryManager;
+import de.boeserwolf91.xml.parser.XmlParser;
 import de.boeserwolf91.xml.parser.XmlParserManager;
 
 public class XmlFactory
@@ -16,7 +18,7 @@ public class XmlFactory
 
     private MatcherManager matcherManager;
     private XmlParserManager parserManager;
-    private XmlDirectoryManager directoryManager;
+    private DirectoryManager directoryManager;
 
     public XmlFactory()
     {
@@ -40,7 +42,7 @@ public class XmlFactory
 
         this.matcherManager = new MatcherManager();
         this.parserManager = new XmlParserManager();
-        this.directoryManager = new XmlDirectoryManager();
+        this.directoryManager = new DirectoryManager();
 
         this.logger = logger;
     }
@@ -70,8 +72,30 @@ public class XmlFactory
         return this.parserManager;
     }
 
-    public XmlDirectoryManager getXmlDirectoryManager()
+    public DirectoryManager getXmlDirectoryManager()
     {
         return this.directoryManager;
+    }
+
+    public void registerXmlParser(XmlParser parser)
+    {
+        this.getXmlParserManager().registerXmlParser(parser);
+    }
+
+    public void registerDirectory(String path, boolean subfolder, boolean insideJar)
+    {
+        this.getXmlDirectoryManager().registerDirectory(path, subfolder, insideJar);
+    }
+
+    public void install()
+    {
+        try
+        {
+            this.getBaseXmlParser().install();
+        }
+        catch (XmlParseException e)
+        {
+            e.printStackTrace();
+        }
     }
 }
