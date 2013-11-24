@@ -5,21 +5,21 @@ import java.util.Set;
 
 import de.boeserwolf91.xml.exception.XmlParseException;
 
-public class XmlDirectoryManager
+public class DirectoryManager
 {
-    Set<XmlDirectory> directories;
+    Set<Directory> directories;
 
-    public XmlDirectoryManager()
+    public DirectoryManager()
     {
-        this.directories = new HashSet<XmlDirectory>();
+        this.directories = new HashSet<Directory>();
     }
 
-    public XmlDirectory[] getXmlDirectories()
+    public Directory[] getDirectories()
     {
-        return this.directories.toArray(new XmlDirectory[this.directories.size()]);
+        return this.directories.toArray(new Directory[this.directories.size()]);
     }
 
-    public boolean registerDirectory(XmlDirectory directory)
+    public boolean registerDirectory(Directory directory)
     {
         return this.directories.add(directory);
     }
@@ -28,7 +28,7 @@ public class XmlDirectoryManager
     {
         try
         {
-            return this.directories.add(new XmlDirectory(path, subfolder, insideJar));
+            return this.directories.add(new Directory(path, subfolder, insideJar));
         }
         catch (XmlParseException e)   // TODO take a RuntimeException!
         {
@@ -37,8 +37,13 @@ public class XmlDirectoryManager
         return false;
     }
 
-    public boolean removeDirectory(XmlDirectory directory)
+    public boolean removeDirectory(Directory directory)
     {
         return this.directories.remove(directory);
+    }
+
+    public void removeDirectories()
+    {
+        this.directories.clear();
     }
 }

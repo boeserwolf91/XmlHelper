@@ -2,13 +2,13 @@ package de.boeserwolf91.xml.parser;
 
 import de.boeserwolf91.xml.exception.XmlParseException;
 
-public class XmlDirectory
+public class Directory
 {
     private String path;
     private boolean insideJar;
     private boolean subfolder;
 
-    public XmlDirectory(String path, boolean subfolder, boolean insideJar) throws XmlParseException
+    public Directory(String path, boolean subfolder, boolean insideJar) throws XmlParseException
     {
 
         if (path == null || path.trim().equals(""))
@@ -39,6 +39,6 @@ public class XmlDirectory
     @Override
     public String toString()
     {
-        return "XmlDir: " + this.insideJar + ":" + this.subfolder + ":" + this.path;
+        return this.path;
     }
 }

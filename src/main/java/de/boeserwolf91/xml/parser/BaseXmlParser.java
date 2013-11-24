@@ -33,7 +33,7 @@ public abstract class BaseXmlParser
         return this.factory.getMatcherManager();
     }
 
-    public XmlDirectoryManager getXmlDirectoryManager()
+    public DirectoryManager getXmlDirectoryManager()
     {
         return this.factory.getXmlDirectoryManager();
     }
