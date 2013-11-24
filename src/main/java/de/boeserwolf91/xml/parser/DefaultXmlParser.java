@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.PriorityQueue;
+import java.util.logging.Level;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -25,23 +26,26 @@ public class DefaultXmlParser extends BaseXmlParser
     @Override
     public void install() throws XmlParseException
     {
+        this.getLogger().log(Level.INFO, "starts to install xml files.");
         if (this.getXmlParserManager().getXmlParsers().length == 0)
         {
             throw new XmlParseException("It isn't specified a class which implements the XmlParser interface!");
         }
-        else if (this.getXmlDirectoryManager().getXmlDirectories().length == 0)
+        else if (this.getXmlDirectoryManager().getDirectories().length == 0)
         {
             throw new XmlParseException("It isn't specified a directory which should be searched for xml files!");
         }
 
         PriorityQueue<Node> nodePriorityQueue = new PriorityQueue<Node>(10, new NodeComparator());
 
-        XmlDirectory[] directories = this.getXmlDirectoryManager().getXmlDirectories();
-        for (XmlDirectory directory : directories)
+        Directory[] directories = this.getXmlDirectoryManager().getDirectories();
+        this.getLogger().log(Level.INFO, "installs xml files from " + directories.length + " directories.");
+        for (Directory directory : directories)
         {
+            this.getLogger().log(Level.INFO, String.format("installs xml files from directory %s with%s subfolders.", directory, directory.searchSubfolder() ? "" : "out"));
             URL directoryURL = null;
 
-            if (directory.isInsideJar())    // wandelt pfad in ein URL-Objekt um
+            if (directory.isInsideJar())    // converts path to an URL object
             {
                 ClassLoader classLoader = this.getClass().getClassLoader();
                 directoryURL = classLoader.getResource(directory.getPath());
@@ -59,11 +63,13 @@ public class DefaultXmlParser extends BaseXmlParser
                     throw new XmlParseException("Can't parse directory " + directory + " to url object!", e);
                 }
             }
+            this.getLogger().log(Level.INFO, "directory url: " + directoryURL);
 
             URL[] urls;
             try                // alle Dateien werden geladen
             {
                 urls = FileUtils.getSubURLs(directoryURL, directory.searchSubfolder());
+                this.getLogger().log(Level.INFO, "found " + urls.length + " files inside the directory.");
             }
             catch (IOException e)
             {
@@ -76,6 +82,7 @@ public class DefaultXmlParser extends BaseXmlParser
                 {
                     continue;
                 }
+                this.getLogger().log(Level.INFO, "parses and adds " + url + " to PriorityQueue<Node>.");
                 try
                 {
                     InputStream inputStream = url.openStream();
@@ -88,6 +95,7 @@ public class DefaultXmlParser extends BaseXmlParser
                 }
             }
 
+            this.getLogger().log(Level.INFO, "removes directory from DirectoryManager");
             this.getXmlDirectoryManager().removeDirectory(directory);
         }
 
@@ -105,6 +113,7 @@ public class DefaultXmlParser extends BaseXmlParser
         {
             if (parser.getRootTag().equals(name))
             {
+                this.getLogger().log(Level.INFO, "parses node with " + parser.getClass().getName());
                 parser.addNode(node, this.getMatcherManager());
                 break;
             }
