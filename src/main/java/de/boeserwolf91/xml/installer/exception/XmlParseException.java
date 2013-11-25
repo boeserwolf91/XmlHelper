@@ -1,4 +1,4 @@
-package de.boeserwolf91.xml.exception;
+package de.boeserwolf91.xml.installer.exception;
 
 /**
  * This exception is thrown if the xml-file is implemented wrong.
