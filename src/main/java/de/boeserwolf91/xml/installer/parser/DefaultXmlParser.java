@@ -66,7 +66,7 @@ public class DefaultXmlParser extends BaseXmlParser
             this.getLogger().log(Level.INFO, "directory url: " + directoryURL);
 
             URL[] urls;
-            try                // alle Dateien werden geladen
+            try                // every files from directory are loaded
             {
                 urls = FileUtils.getSubURLs(directoryURL, directory.searchSubfolder());
                 this.getLogger().log(Level.INFO, "found " + urls.length + " files inside the directory.");
@@ -78,7 +78,7 @@ public class DefaultXmlParser extends BaseXmlParser
 
             for (URL url : urls)
             {
-                if (!StringUtils.getFileExtension(url.getPath()).equalsIgnoreCase("xml"))    // alle Wurzeltags der xml-Dateien werden in die Prioritätswarteschlange geladen
+                if (!StringUtils.getFileExtension(url.getPath()).equalsIgnoreCase("xml"))    // every root node will be stored to PriorityQueue
                 {
                     continue;
                 }
@@ -101,8 +101,9 @@ public class DefaultXmlParser extends BaseXmlParser
 
         while (!nodePriorityQueue.isEmpty())
         {
-            this.parse(nodePriorityQueue.poll());   // Wurzeltags werden geparst
+            this.parse(nodePriorityQueue.poll());   // parses root nodes
         }
+        this.getLogger().log(Level.INFO, "finished to install xml files from directories");
     }
 
     public void parse(Node node) throws XmlParseException
@@ -115,9 +116,10 @@ public class DefaultXmlParser extends BaseXmlParser
             {
                 this.getLogger().log(Level.INFO, "parses node with " + parser.getClass().getName());
                 parser.addNode(node, this.getMatcherManager());
-                break;
+                return;
             }
         }
+        this.getLogger().log(Level.WARNING, "Did not find any parser for root tag '" + name + "'!");
     }
 
     public Node getNode(InputStream stream) throws XmlParseException
