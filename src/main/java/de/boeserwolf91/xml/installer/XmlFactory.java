@@ -3,6 +3,7 @@ package de.boeserwolf91.xml.installer;
 import java.util.logging.Logger;
 
 import de.boeserwolf91.xml.installer.exception.XmlParseException;
+import de.boeserwolf91.xml.installer.matcher.Matcher;
 import de.boeserwolf91.xml.installer.matcher.MatcherManager;
 import de.boeserwolf91.xml.installer.parser.BaseXmlParser;
 import de.boeserwolf91.xml.installer.parser.DefaultXmlParser;
@@ -87,13 +88,30 @@ public class XmlFactory
         this.getXmlDirectoryManager().registerDirectory(path, subfolder, insideJar);
     }
 
+    public void registerMatcher(Matcher matcher, Class ... types)
+    {
+        this.matcherManager.registerMatcher(matcher, types);
+    }
+
     public void install()
     {
         try
         {
             this.getBaseXmlParser().install();
         }
-        catch (XmlParseException e)
+        catch (XmlParseException e)     // TODO add RuntimeException and throw it!
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void parse(String path, boolean insideJar)
+    {
+        try
+        {
+            this.getBaseXmlParser().parse(path, insideJar);
+        }
+        catch (XmlParseException e)       // TODO add RuntimeException and throw it!
         {
             e.printStackTrace();
         }
