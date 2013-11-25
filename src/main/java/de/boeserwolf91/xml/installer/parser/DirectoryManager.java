@@ -3,8 +3,6 @@ package de.boeserwolf91.xml.installer.parser;
 import java.util.HashSet;
 import java.util.Set;
 
-import de.boeserwolf91.xml.installer.exception.XmlParseException;
-
 public class DirectoryManager
 {
     Set<Directory> directories;
@@ -26,15 +24,7 @@ public class DirectoryManager
 
     public boolean registerDirectory(String path, boolean subfolder, boolean insideJar)
     {
-        try
-        {
-            return this.directories.add(new Directory(path, subfolder, insideJar));
-        }
-        catch (XmlParseException e)   // TODO take a RuntimeException!
-        {
-            e.printStackTrace();
-        }
-        return false;
+        return this.directories.add(new Directory(path, subfolder, insideJar));
     }
 
     public boolean removeDirectory(Directory directory)

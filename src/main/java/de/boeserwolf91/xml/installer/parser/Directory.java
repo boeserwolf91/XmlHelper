@@ -1,21 +1,13 @@
 package de.boeserwolf91.xml.installer.parser;
 
-import de.boeserwolf91.xml.installer.exception.XmlParseException;
-
 public class Directory
 {
     private String path;
     private boolean insideJar;
     private boolean subfolder;
 
-    public Directory(String path, boolean subfolder, boolean insideJar) throws XmlParseException
+    public Directory(String path, boolean subfolder, boolean insideJar)
     {
-
-        if (path == null || path.trim().equals(""))
-        {
-            throw new XmlParseException("You have to specify a path to create a xmlDirectory");
-        }
-
         this.path = path.trim();
         this.subfolder = subfolder;
         this.insideJar = insideJar;
