@@ -1,4 +1,4 @@
-package de.boeserwolf91.xml.parser;
+package de.boeserwolf91.xml.installer.parser;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -16,10 +16,10 @@ import java.util.logging.Level;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import de.boeserwolf91.xml.exception.XmlParseException;
-import de.boeserwolf91.xml.utils.FileUtils;
-import de.boeserwolf91.xml.utils.NodeComparator;
-import de.boeserwolf91.xml.utils.StringUtils;
+import de.boeserwolf91.xml.installer.exception.XmlParseException;
+import de.boeserwolf91.xml.installer.utils.FileUtils;
+import de.boeserwolf91.xml.installer.utils.NodeComparator;
+import de.boeserwolf91.xml.installer.utils.StringUtils;
 
 public class DefaultXmlParser extends BaseXmlParser
 {

@@ -1,4 +1,4 @@
-package de.boeserwolf91.xml.utils;
+package de.boeserwolf91.xml.installer.utils;
 
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;

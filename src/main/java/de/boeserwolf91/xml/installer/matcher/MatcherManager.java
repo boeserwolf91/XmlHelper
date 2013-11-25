@@ -1,4 +1,4 @@
-package de.boeserwolf91.xml.matcher;
+package de.boeserwolf91.xml.installer.matcher;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -6,16 +6,16 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import de.boeserwolf91.xml.matcher.matchers.BooleanMatcher;
-import de.boeserwolf91.xml.matcher.matchers.ByteMatcher;
-import de.boeserwolf91.xml.matcher.matchers.CharMatcher;
-import de.boeserwolf91.xml.matcher.matchers.DoubleMatcher;
-import de.boeserwolf91.xml.matcher.matchers.FloatMatcher;
-import de.boeserwolf91.xml.matcher.matchers.IntegerMatcher;
-import de.boeserwolf91.xml.matcher.matchers.LocaleMatcher;
-import de.boeserwolf91.xml.matcher.matchers.LongMatcher;
-import de.boeserwolf91.xml.matcher.matchers.ShortMatcher;
-import de.boeserwolf91.xml.matcher.matchers.StringMatcher;
+import de.boeserwolf91.xml.installer.matcher.matchers.BooleanMatcher;
+import de.boeserwolf91.xml.installer.matcher.matchers.ByteMatcher;
+import de.boeserwolf91.xml.installer.matcher.matchers.CharMatcher;
+import de.boeserwolf91.xml.installer.matcher.matchers.DoubleMatcher;
+import de.boeserwolf91.xml.installer.matcher.matchers.FloatMatcher;
+import de.boeserwolf91.xml.installer.matcher.matchers.IntegerMatcher;
+import de.boeserwolf91.xml.installer.matcher.matchers.LocaleMatcher;
+import de.boeserwolf91.xml.installer.matcher.matchers.LongMatcher;
+import de.boeserwolf91.xml.installer.matcher.matchers.ShortMatcher;
+import de.boeserwolf91.xml.installer.matcher.matchers.StringMatcher;
 
 public final class MatcherManager implements Cloneable
 {

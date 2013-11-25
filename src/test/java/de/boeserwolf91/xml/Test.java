@@ -2,7 +2,8 @@ package de.boeserwolf91.xml;
 
 import junit.framework.TestCase;
 
-import de.boeserwolf91.xml.utils.FileUtils;
+import de.boeserwolf91.xml.installer.XmlFactory;
+import de.boeserwolf91.xml.installer.utils.FileUtils;
 
 public class Test extends TestCase
 {

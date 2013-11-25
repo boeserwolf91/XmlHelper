@@ -1,13 +1,13 @@
-package de.boeserwolf91.xml.parser;
+package de.boeserwolf91.xml.installer.parser;
 
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.logging.Logger;
 
-import de.boeserwolf91.xml.XmlFactory;
-import de.boeserwolf91.xml.exception.XmlParseException;
-import de.boeserwolf91.xml.matcher.MatcherManager;
+import de.boeserwolf91.xml.installer.XmlFactory;
+import de.boeserwolf91.xml.installer.exception.XmlParseException;
+import de.boeserwolf91.xml.installer.matcher.MatcherManager;
 
 public abstract class BaseXmlParser
 {

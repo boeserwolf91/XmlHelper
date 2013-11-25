@@ -1,4 +1,4 @@
-package de.boeserwolf91.xml.utils;
+package de.boeserwolf91.xml.installer.utils;
 
 public class StringUtils
 {

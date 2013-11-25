@@ -1,7 +1,7 @@
-package de.boeserwolf91.xml.matcher.matchers;
+package de.boeserwolf91.xml.installer.matcher.matchers;
 
-import de.boeserwolf91.xml.matcher.Matcher;
-import de.boeserwolf91.xml.matcher.MatcherManager;
+import de.boeserwolf91.xml.installer.matcher.Matcher;
+import de.boeserwolf91.xml.installer.matcher.MatcherManager;
 
 public class IntegerMatcher implements Matcher<Integer>
 {

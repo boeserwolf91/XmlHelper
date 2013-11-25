@@ -1,4 +1,4 @@
-package de.boeserwolf91.xml.matcher;
+package de.boeserwolf91.xml.installer.matcher;
 
 public interface Matcher<T>
 {

@@ -1,4 +1,4 @@
-package de.boeserwolf91.xml.exception;
+package de.boeserwolf91.xml.installer.exception;
 
 public class XmlSaveException extends XmlException
 {

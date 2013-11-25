@@ -1,14 +1,14 @@
-package de.boeserwolf91.xml;
+package de.boeserwolf91.xml.installer;
 
 import java.util.logging.Logger;
 
-import de.boeserwolf91.xml.exception.XmlParseException;
-import de.boeserwolf91.xml.matcher.MatcherManager;
-import de.boeserwolf91.xml.parser.BaseXmlParser;
-import de.boeserwolf91.xml.parser.DefaultXmlParser;
-import de.boeserwolf91.xml.parser.DirectoryManager;
-import de.boeserwolf91.xml.parser.XmlParser;
-import de.boeserwolf91.xml.parser.XmlParserManager;
+import de.boeserwolf91.xml.installer.exception.XmlParseException;
+import de.boeserwolf91.xml.installer.matcher.MatcherManager;
+import de.boeserwolf91.xml.installer.parser.BaseXmlParser;
+import de.boeserwolf91.xml.installer.parser.DefaultXmlParser;
+import de.boeserwolf91.xml.installer.parser.DirectoryManager;
+import de.boeserwolf91.xml.installer.parser.XmlParser;
+import de.boeserwolf91.xml.installer.parser.XmlParserManager;
 
 public class XmlFactory
 {

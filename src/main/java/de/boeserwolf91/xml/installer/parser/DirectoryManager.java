@@ -1,9 +1,9 @@
-package de.boeserwolf91.xml.parser;
+package de.boeserwolf91.xml.installer.parser;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import de.boeserwolf91.xml.exception.XmlParseException;
+import de.boeserwolf91.xml.installer.exception.XmlParseException;
 
 public class DirectoryManager
 {
