@@ -95,25 +95,11 @@ public class XmlFactory
 
     public void install()
     {
-        try
-        {
-            this.getBaseXmlParser().install();
-        }
-        catch (XmlParseException e)     // TODO add RuntimeException and throw it!
-        {
-            e.printStackTrace();
-        }
+        this.getBaseXmlParser().install();
     }
 
     public void parse(String path, boolean insideJar)
     {
-        try
-        {
-            this.getBaseXmlParser().parse(path, insideJar);
-        }
-        catch (XmlParseException e)       // TODO add RuntimeException and throw it!
-        {
-            e.printStackTrace();
-        }
+        this.getBaseXmlParser().parse(path, insideJar);
     }
 }
