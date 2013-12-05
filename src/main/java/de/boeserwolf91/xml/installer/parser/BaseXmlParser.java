@@ -1,9 +1,15 @@
 package de.boeserwolf91.xml.installer.parser;
 
-import java.io.File;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 import java.io.InputStream;
-import java.net.URL;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import de.boeserwolf91.xml.installer.XmlFactory;
 import de.boeserwolf91.xml.installer.exception.XmlParseException;
@@ -43,13 +49,43 @@ public abstract class BaseXmlParser
         return this.factory.getLogger();
     }
 
+    public void parse(InputStream stream) throws XmlParseException
+    {
+        this.parse(this.getNode(stream));
+    }
+
+    protected void parse(Node node)
+    {
+        for (XmlParser parser : this.getXmlParserManager().getXmlParsers())
+        {
+            if (parser.getRootTag().equals(node.getNodeName()))
+            {
+                this.getLogger().log(Level.INFO, "parses node with " + parser.getClass().getName());
+                parser.addNode(node, this.getMatcherManager());
+                return;
+            }
+        }
+        this.getLogger().log(Level.WARNING, "Did not find any parser for root tag '" + node.getNodeName() + "'!");
+    }
+
+    protected Node getNode(InputStream stream) throws XmlParseException
+    {
+        try
+        {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(stream);
+
+            NodeList list = document.getChildNodes();
+            Node node = list.item(0);
+
+            return node;
+        }
+        catch (Exception e)
+        {
+            throw new XmlParseException("Can't parse the input stream!", e);
+        }
+    }
+
     public abstract void install() throws XmlParseException;
-
-    public abstract void parse(String path, boolean jarDir) throws XmlParseException;
-
-    public abstract void parse(InputStream stream) throws XmlParseException;
-
-    public abstract void parse(URL url) throws XmlParseException;
-
-    public abstract void parse(File file) throws XmlParseException;
 }

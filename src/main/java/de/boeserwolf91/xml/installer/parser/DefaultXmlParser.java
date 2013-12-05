@@ -1,8 +1,6 @@
 package de.boeserwolf91.xml.installer.parser;
 
-import org.w3c.dom.Document;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,9 +10,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.PriorityQueue;
 import java.util.logging.Level;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import de.boeserwolf91.xml.installer.exception.XmlParseException;
 import de.boeserwolf91.xml.installer.utils.FileUtils;
@@ -106,42 +101,6 @@ public class DefaultXmlParser extends BaseXmlParser
         this.getLogger().log(Level.INFO, "finished to install xml files from directories");
     }
 
-    public void parse(Node node) throws XmlParseException
-    {
-        String name = node.getNodeName();
-
-        for (XmlParser parser : this.getXmlParserManager().getXmlParsers())
-        {
-            if (parser.getRootTag().equals(name))
-            {
-                this.getLogger().log(Level.INFO, "parses node with " + parser.getClass().getName());
-                parser.addNode(node, this.getMatcherManager());
-                return;
-            }
-        }
-        this.getLogger().log(Level.WARNING, "Did not find any parser for root tag '" + name + "'!");
-    }
-
-    public Node getNode(InputStream stream) throws XmlParseException
-    {
-        try
-        {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.parse(stream);
-
-            NodeList list = document.getChildNodes();
-            Node node = list.item(0);
-
-            return node;
-        }
-        catch (Exception e)
-        {
-            throw new XmlParseException("Can't parse the input stream!", e);
-        }
-    }
-
-    @Override
     public void parse(String path, boolean jarDir) throws XmlParseException
     {
         if (jarDir)
@@ -154,13 +113,6 @@ public class DefaultXmlParser extends BaseXmlParser
         }
     }
 
-    @Override
-    public void parse(InputStream stream) throws XmlParseException
-    {
-        this.parse(this.getNode(stream));
-    }
-
-    @Override
     public void parse(URL url) throws XmlParseException
     {
         if (!StringUtils.getFileExtension(url.getPath()).equalsIgnoreCase("xml"))
@@ -180,7 +132,6 @@ public class DefaultXmlParser extends BaseXmlParser
         }
     }
 
-    @Override
     public void parse(File file) throws XmlParseException
     {
         if (!StringUtils.getFileExtension(file.getName()).equalsIgnoreCase("xml"))

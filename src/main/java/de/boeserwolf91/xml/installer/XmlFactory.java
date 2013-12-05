@@ -1,5 +1,6 @@
 package de.boeserwolf91.xml.installer;
 
+import java.io.InputStream;
 import java.util.logging.Logger;
 
 import de.boeserwolf91.xml.installer.exception.XmlParseException;
@@ -98,8 +99,8 @@ public class XmlFactory
         this.getBaseXmlParser().install();
     }
 
-    public void parse(String path, boolean insideJar)
+    public void parse(InputStream stream)
     {
-        this.getBaseXmlParser().parse(path, insideJar);
+        this.getBaseXmlParser().parse(stream);
     }
 }
