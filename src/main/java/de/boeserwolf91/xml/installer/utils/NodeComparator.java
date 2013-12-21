@@ -9,8 +9,8 @@ public class NodeComparator implements Comparator<Node>
 {
     public int compare(Node first, Node second)
     {
-        int firstPriority = 0;
-        int secondPriority = 0;
+        Integer firstPriority = 0;
+        Integer secondPriority = 0;
 
         NamedNodeMap attributes = first.getAttributes();
 
@@ -26,6 +26,6 @@ public class NodeComparator implements Comparator<Node>
         {
             secondPriority = Integer.valueOf(priorityNode.getTextContent());
         }
-        return Integer.compare(secondPriority, firstPriority);
+        return secondPriority.compareTo(firstPriority);
     }
 }

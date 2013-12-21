@@ -3,7 +3,6 @@ package de.boeserwolf91.xml.installer;
 import java.io.InputStream;
 import java.util.logging.Logger;
 
-import de.boeserwolf91.xml.installer.exception.XmlParseException;
 import de.boeserwolf91.xml.installer.matcher.Matcher;
 import de.boeserwolf91.xml.installer.matcher.MatcherManager;
 import de.boeserwolf91.xml.installer.parser.BaseXmlParser;
