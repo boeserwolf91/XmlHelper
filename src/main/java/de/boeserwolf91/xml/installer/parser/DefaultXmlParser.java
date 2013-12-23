@@ -40,14 +40,17 @@ public class DefaultXmlParser extends BaseXmlParser
             this.getLogger().log(Level.INFO, String.format("installs xml files from directory %s with%s subfolders.", directory, directory.searchSubfolder() ? "" : "out"));
             URL directoryURL = null;
 
-            if (directory.isInsideJar())    // converts path to an URL object
-            {
-                ClassLoader classLoader = this.getClass().getClassLoader();
-                directoryURL = classLoader.getResource(directory.getPath());
-            }
-            else
+            ClassLoader classLoader = this.getClass().getClassLoader();
+            directoryURL = classLoader.getResource(directory.getPath());
+
+            if(directoryURL == null)
             {
                 File file = new File(directory.getPath());
+
+                if (!file.exists())
+                {
+                    throw new XmlParseException("The directory " + directory + " couldn't be found!");
+                }
 
                 try
                 {

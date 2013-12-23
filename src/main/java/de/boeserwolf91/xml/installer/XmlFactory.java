@@ -83,9 +83,9 @@ public class XmlFactory
         this.getXmlParserManager().registerXmlParser(parser);
     }
 
-    public void registerDirectory(String path, boolean subfolder, boolean insideJar)
+    public void registerDirectory(String path, boolean subfolder)
     {
-        this.getXmlDirectoryManager().registerDirectory(path, subfolder, insideJar);
+        this.getXmlDirectoryManager().registerDirectory(path, subfolder);
     }
 
     public void registerMatcher(Matcher matcher, Class ... types)

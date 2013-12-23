@@ -35,7 +35,7 @@ public class Test extends TestCase
     @org.junit.Test
     public void test() throws Exception
     {
-        this.factory.registerDirectory(FileUtils.getJarDirectory(this.getClass()).getAbsolutePath(), true, false);
+        this.factory.registerDirectory(FileUtils.getJarDirectory(this.getClass()).getAbsolutePath(), true);
         this.factory.install();
     }
 }

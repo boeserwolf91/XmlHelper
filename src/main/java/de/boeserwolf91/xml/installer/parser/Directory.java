@@ -3,14 +3,12 @@ package de.boeserwolf91.xml.installer.parser;
 public class Directory
 {
     private String path;
-    private boolean insideJar;
     private boolean subfolder;
 
-    public Directory(String path, boolean subfolder, boolean insideJar)
+    public Directory(String path, boolean subfolder)
     {
         this.path = path.trim();
         this.subfolder = subfolder;
-        this.insideJar = insideJar;
     }
 
     public String getPath()
@@ -21,11 +19,6 @@ public class Directory
     public boolean searchSubfolder()
     {
         return this.subfolder;
-    }
-
-    public boolean isInsideJar()
-    {
-        return this.insideJar;
     }
 
     @Override

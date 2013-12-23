@@ -22,9 +22,9 @@ public class DirectoryManager
         return this.directories.add(directory);
     }
 
-    public boolean registerDirectory(String path, boolean subfolder, boolean insideJar)
+    public boolean registerDirectory(String path, boolean subfolder)
     {
-        return this.directories.add(new Directory(path, subfolder, insideJar));
+        return this.directories.add(new Directory(path, subfolder));
     }
 
     public boolean removeDirectory(Directory directory)
