@@ -2,11 +2,11 @@ package de.boeserwolf91.xml;
 
 import junit.framework.TestCase;
 
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import de.boeserwolf91.xml.installer.XmlFactory;
-import de.boeserwolf91.xml.installer.utils.FileUtils;
 
 public class Test extends TestCase
 {
@@ -35,7 +35,13 @@ public class Test extends TestCase
     @org.junit.Test
     public void test() throws Exception
     {
-        this.factory.registerDirectory(FileUtils.getJarDirectory(this.getClass()).getAbsolutePath(), true);
+        this.factory.registerDirectory(getJarDirectory(this.getClass()).getAbsolutePath(), true);
         this.factory.install();
+    }
+
+    public static File getJarDirectory(Class clazz)
+    {
+        String javaClassPath = clazz.getProtectionDomain().getCodeSource().getLocation().getPath();
+        return new File(javaClassPath).getParentFile();
     }
 }
